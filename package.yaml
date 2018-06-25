@@ -1,0 +1,49 @@
+name:                sokutype-dict
+version:             0.1.0.0
+github:              na4zagin3/sokutype-dict
+license:             BSD3
+author:              SAKAMOTO Noriaki
+maintainer:          mrty.ityt.pt@gmail.com
+copyright:           2017 SAKAMOTO Noriaki
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Utilities for sokutype dictionary
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on Github at <https://github.com/na4zagin3/sokutype-dict#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.5 && < 0.6
+
+library:
+  source-dirs: src
+
+executables:
+  sokutype-dict-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sokutype-dict
+
+tests:
+  sokutype-dict-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - sokutype-dict

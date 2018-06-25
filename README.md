@@ -1,0 +1,1 @@
+# sokutype-dict
