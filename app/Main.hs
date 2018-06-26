@@ -1,8 +1,6 @@
 module Main where
 
-import Control.Monad
 import qualified Data.List as L
-import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Set (Set)
 import qualified Data.Set as S
@@ -762,7 +760,8 @@ strokeE7 = map (\(s, n, sr, w) -> (Syllables w, LeftRightMiddle (S.fromList s) (
     ks = [ ([      K,S,    O], [           ], [O,I,A          ], "もちろん")
          , ([      K,S      ], [           ], [O,I,A          ], "むろん")
          , ([  T,    S,  I  ], [           ], [O,I,A          ], "じんもん")
-         , ([        S,A,  O], [   TK      ], [O,I,A          ], "げんいん")
+         -- , ([        S,A,  O], [   TK      ], [O,I,A          ], "げんいん") -- This must be an error.
+         , ([    H,K,  A,  O], [           ], [O,I,A          ], "げんいん") -- This must be HKAO||OIA = げ||ん
          , ([  T,      A    ], [           ], [O,I,A          ], "たぶん")
          , ([  T,    S      ], [           ], [O,I,A          ], "ずいぶん")
          , ([Y,    K,      O], [           ], [O,I,A          ], "きょねん")
@@ -1019,6 +1018,7 @@ generateStroke2 (Syllables s1, LeftMiddle f1 n1) (Syllables s2, LeftMiddle f2 n2
 generateStroke2 (Syllables s1, OnlyLeftMiddle f1 n1) (Syllables s2, EitherHand f2) = [(s1 ++ s2, (f1, n1, f2), Normal)]
 generateStroke2 (Syllables s1, OnlyLeftMiddle f1 n1) (Syllables s2, LeftMiddle f2 n2) = [(s1 ++ s2, (f1, n1 `S.union` mirrorThumbs n2, f2), Permitted)]
 
+basicStrokeTemplates :: [(StenoWord, StrokeType)]
 basicStrokeTemplates = concat [ strokeKiso
                               , strokeA
                               , strokeB1
@@ -1060,6 +1060,7 @@ basicStrokeTemplates = concat [ strokeKiso
                               , strokeG3S
                               ]
 
+basicStrokes :: [(String, Stroke, Priority)]
 basicStrokes = concatMap generateStroke1 basicStrokeTemplates ++ complexStrokes
   where
     complexStrokes = concat $ do
@@ -1067,6 +1068,7 @@ basicStrokes = concatMap generateStroke1 basicStrokeTemplates ++ complexStrokes
       t2 <- basicStrokeTemplates
       return $ generateStroke2 t1 t2
 
+strokeTable :: M.Map Stroke (Set (String, Priority))
 strokeTable = M.fromListWith S.union $ map (\(t, s, p) -> (s, S.singleton (t, p))) basicStrokes
 
 showStroke :: Stroke -> String
