@@ -272,7 +272,7 @@ strokeB2 = map (\(s, w) -> (Syllables w, EitherHand $ S.fromList s)) ks ++ [koto
          , ([Y,      S,A,I,O], "（し）まして")
          , ([Y,T,    S,A,I,O], "として")
          , ([Y,T,  K,S,A,I,O], "のでございまして")
-         , ([    H,K,S,A,I,O], "もって") -- HKSAI|| なのか、KSAIOなのか、はたまた HKSAIO なのか不明
+         , ([Y,    K,S,A,I,O], "もって")
          , ([Y,T,H,K,S,A,I,O], "になって")
          , ([    H,    A,I,O], "ほど")
          , ([Y,  H,    A,I,O], "ほか")
@@ -967,7 +967,7 @@ strokeG3S = map (\(s, n, sr, w) -> (Syllables w, LeftRightMiddle (S.fromList s) 
     ks = [ ([    H          ], [TT         ], [               ], "ふつう")
          , ([Y,    K        ], [   TK      ], [               ], "きおく")
          , ([      K,      O], [   TK,TI   ], [O,  A,      T  ], "こぎって")
-         , ([  T,        I,O], [           ], [               ], "つづ")
+         , ([  T,        I,O], [           ], [               ], "づつ") -- ???
          , ([          A,I  ], [TT,TK      ], [               ], "をも おも")
          ]
 
@@ -979,24 +979,6 @@ strokeP = map (\(s, n, sr, w) -> (Syllables w, LeftRightMiddle (S.fromList s) (S
          , ([               ], [         TN], [    A,  K,H    ], "」")
          , ([               ], [         TN], [            T  ], "つなぎのしるし")
          ]
-{-
-strokeC2 :: [(StenoWord, StrokeType)]
-strokeC2 = map (\(s, n, w) -> (Syllables w, LeftMiddle (S.fromList s) (S.fromList n))) ks
-  where
-    ks = [ ([Y,T,H,K,S,A,I,O], [TT,TK], "（）")
-         , ([Y,T,H,K,S,A,I,O], [TT,TK], "（）")
-         , ([Y,T,H,K,S,A,I,O], [TT,TK], "（）")
-         ]
-
-strokeD1 :: [(StenoWord, StrokeType)]
-strokeD1 = map (\(s, n, sr, w) -> (Syllables w, LeftRightMiddle (S.fromList s) (S.fromList n) (S.fromList sr))) ks
-  where
-    ks = [ ([Y,T,H,K,S,A,I,O], [TT,TK,TI,TN], [O,I,A,S,K,H,T,Y], "（）")
-         , ([Y,T,H,K,S,A,I,O], [TT,TK,TI,TN], [O,I,A,S,K,H,T,Y], "（）")
-         , ([Y,T,H,K,S,A,I,O], [TT,TK,TI,TN], [O,I,A,S,K,H,T,Y], "（）")
-         ]
-
--}
 
 data Priority = Special | Normal | Permitted
   deriving (Eq, Ord, Read, Show)
