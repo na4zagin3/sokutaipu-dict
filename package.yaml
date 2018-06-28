@@ -21,6 +21,8 @@ description:         Please see the README on Github at <https://github.com/na4z
 
 dependencies:
 - base >= 4.7 && < 5
+- aeson
+- bytestring
 - containers >= 0.5 && < 0.6
 
 library:
