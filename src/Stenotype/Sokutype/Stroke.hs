@@ -919,7 +919,7 @@ strokeG2 = map (\(s, n, sr, w) -> (Syllables w, LeftRightMiddle (S.fromList s) (
          , ([      K,S,A,I  ], [           ], [      S        ], "もうすこし")
          , ([      K,  A,I  ], [      TI,TN], [          H,  Y], "こういうような")
          , ([      K,  A,I  ], [      TI,TN], [  I,      H,  Y], "こういうように")
-         , ([      K,  A,I  ], [      TI,TN], [  I,      H,  Y], "そういうような")
+         , ([        S,A,I  ], [      TI,TN], [  I,      H,  Y], "そういうような")
          , ([        S,A,I  ], [      TI,TN], [          H,  Y], "そういうように")
          , ([              O], [      TI,TN], [          H,  Y], "おなじような")
          , ([              O], [      TI,TN], [  I,      H,  Y], "おなじように")
