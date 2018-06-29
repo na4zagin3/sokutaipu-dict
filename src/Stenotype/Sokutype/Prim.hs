@@ -35,12 +35,36 @@ data StenoWord = Syllables String
 data Priority = Special | Normal | Permitted
   deriving (Eq, Ord, Read, Show)
 
-type Stroke = (Set FingerKey, Set ThumbKey, Set FingerKey)
+data Stroke = Stroke
+  { hidariNoMure :: Set FingerKey
+  , nakaNoMure :: Set ThumbKey
+  , migiNoMure :: Set FingerKey
+  }
+  deriving (Eq, Ord, Read, Show)
+
+emptyStroke :: Stroke
+emptyStroke = Stroke
+  { hidariNoMure = S.empty
+  , nakaNoMure = S.empty
+  , migiNoMure = S.empty
+  }
+
+stroke :: (Set FingerKey, Set ThumbKey, Set FingerKey) -> Stroke
+stroke (fl, n, fr) = Stroke
+  { hidariNoMure = fl
+  , nakaNoMure = n
+  , migiNoMure = fr
+  }
 
 showStroke :: Stroke -> String
-showStroke (f1, n, f2) = concat [ concatMap show $ S.toAscList f1
-                                , "|"
-                                , concatMap (tail . show) $ S.toAscList n
-                                , "|"
-                                , concatMap show $ S.toDescList f2
-                                ]
+showStroke s = concat
+  [ concatMap show $ S.toAscList f1
+  , "|"
+  , concatMap (tail . show) $ S.toAscList n
+  , "|"
+  , concatMap show $ S.toDescList f2
+  ]
+  where
+    f1 = hidariNoMure s
+    n = nakaNoMure s
+    f2 = migiNoMure s
